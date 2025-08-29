@@ -1,8 +1,8 @@
 # ==============================================================================
 # Stage 1: Builder - 在 GPU 兼容环境中安装依赖
 # ==============================================================================
-# [修改] 从你自己的阿里云 ACR 仓库拉取基础镜像
-FROM registry.cn-beijing.aliyuncs.com/memcloud/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as builder
+# [修改] 从 NVIDIA 在国内的公共镜像源拉取基础镜像
+FROM ccr.ccs.tencentyun.com/nvidia-ngc/cuda:11.8.0-cudnn8-devel-ubuntu22.04 as builder
 
 # --- 以下内容保持不变 ---
 RUN apt-get update && apt-get install -y \
@@ -23,8 +23,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # ==============================================================================
 # Stage 2: Final Image - 创建精简的 GPU 运行环境
 # ==============================================================================
-# [修改] 最终镜像也从你自己的阿里云 ACR 仓库拉取
-FROM registry.cn-beijing.aliyuncs.com/memcloud/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+# [修改] 最终镜像也从 NVIDIA 在国内的公共镜像源拉取
+FROM ccr.ccs.tencentyun.com/nvidia-ngc/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
 
 # --- 以下内容保持不变 ---
 RUN apt-get update && apt-get install -y \
