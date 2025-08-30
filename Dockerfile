@@ -41,7 +41,7 @@ COPY . .
 ENV HF_HOME=/app/.cache/huggingface
 ENV HF_HUB_CACHE=$HF_HOME/hub
 
-RUN python3 -c "from model import Kronos, KronosTokenizer; KronosTokenizer.from_pretrained('NeoQuasar/Kronos-Tokenizer-base'); Kronos.from_pretrained('NeoQuasar/Kronos-small')"
+RUN python3 -c "from model import Kronos, KronosTokenizer; KronosTokenizer.from_pretrained('NeoQuasar/Kronos-Tokenizer-base'); Kronos.from_pretrained('NeoQuasar/Kronos-base')"
 
 EXPOSE 9000
 
